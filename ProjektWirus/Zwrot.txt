@@ -1,4 +1,4 @@
 Wyniki poprzedniej symulacji:
-Najwiêcej zara¿onych jednego dnia:133
-Najwiêcej zara¿onych w jednym momencie:1092
-Dzieñ zakoñczenia symulacji:5
+Najwiêcej zara¿onych jednego dnia:128
+Najwiêcej zara¿onych w jednym momencie:1287
+Dzieñ zakoñczenia symulacji:15
