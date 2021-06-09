@@ -142,7 +142,7 @@ public class Menu extends JPanel{
 								Zwrot.toFile();
 							 } catch (IOException e1) {}
 				             Menu.parametry=null;
-				             JOptionPane.showMessageDialog(frame,"Symulacja zakoñczona.","",JOptionPane.PLAIN_MESSAGE);
+				             JOptionPane.showMessageDialog(frame,"Symulacja zakoñczona.\"Wyniki poprzedniej symulacji:\\r\\nNajwiêcej zara¿onych jednego dnia:\"+mostSickDay+\"\\r\\nNajwiêcej zara¿onych w jednym momencie:\"+MostSick+\"\\r\\nDzieñ zakoñczenia symulacji:\"+dayExit;","",JOptionPane.PLAIN_MESSAGE);
 				             System.exit(0);
 		            	}
 		               
