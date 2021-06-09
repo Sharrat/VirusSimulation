@@ -56,7 +56,7 @@ public class Menu extends JPanel{
 		panel.add(procMovingText);
 
 		JLabel procSickLabel = new JLabel("Procent zara¿onyh");
-		procSickLabel.setBounds(10, 80, 190, 25);
+		procSickLabel.setBounds(10, 80, 2000, 25);
 		panel.add(procSickLabel);
 		
 		JFormattedTextField procSickText = new JFormattedTextField(formatter);
