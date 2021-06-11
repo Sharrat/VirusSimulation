@@ -20,8 +20,7 @@ public class Plansza extends JPanel {
 		{
 			try {
 				Stoper.routine(Menu.parametry.points,Menu.parametry.pointsMoving,Menu.parametry.virus,Menu.parametry.virusDeadly,Menu.parametry.vaccine);
-			} catch (IOException e) {
-			}
+			} catch (IOException e) {}
 			repaint();
 		}
 	};
