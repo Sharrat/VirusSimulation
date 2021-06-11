@@ -189,7 +189,7 @@ public class Menu extends JPanel{
 			public void actionPerformed(ActionEvent e) 
 			{
 				Plansza plansza = new Plansza();
-				Menu.parametry = new Parametry(2000,50,40,30,5,85,60);
+				Menu.parametry = new Parametry(2000,50,40,30,100,85,60);
 				new Zwrot(2000,50,40,30,5);
 				JDialog dialog = new JDialog(); 
 				dialog.add(plansza);
