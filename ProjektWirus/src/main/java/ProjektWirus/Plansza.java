@@ -14,33 +14,33 @@ import javax.swing.Timer;
 
 public class Plansza extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private ActionListener regulator = new ActionListener() 
+	private ActionListener regulator = new ActionListener() //g³ówna pêtla symulacji
 	{ 
 		public void actionPerformed(ActionEvent evt) 
 		{
 			try {
-				Stoper.routine(Menu.parametry.points,Menu.parametry.pointsMoving,Menu.parametry.virus,Menu.parametry.virusDeadly,Menu.parametry.vaccine);
+				Stoper.routine(Menu.parametry.points,Menu.parametry.pointsMoving,Menu.parametry.virus,Menu.parametry.virusDeadly,Menu.parametry.vaccine);//wywo³anie g³ównej logiki symulacji
 			} catch (IOException e) {}
-			repaint();
+			repaint();//funkcja rysuj¹ca elementy na planszy(paintComponent)
 		}
 	};
 	public Timer timer = new Timer(10,regulator);
 	public Plansza() {
 		setBackground(Color.lightGray);
-        timer.start();
+        timer.start();//start g³ównej pêtli symulacji
 	}
-	public void paintComponent(Graphics g) { 
+	public void paintComponent(Graphics g) { //funkcja rysuj¹ca elementy na planszy
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        for (Agent point : Menu.parametry.points) {
+        for (Agent point : Menu.parametry.points) {//pêtla rysuj¹ca agentów
         	if(point.infected==1) {g2.setColor(Color.red);}
         	else if(point.infected==2) {g2.setColor(Color.magenta);}
         	else if(point.infected==0&&point.vaccinated==true) {g2.setColor(Color.cyan);}
         	else {g2.setColor(Color.blue);}
             g2.fillOval(point.x, point.y, 4, 4);
         }
-        for (AgentPodrozujacy point : Menu.parametry.pointsMoving) {
+        for (AgentPodrozujacy point : Menu.parametry.pointsMoving) {//pêtla rysuj¹ca agentów podró¿uj¹cych
         	if(point.infected==1) {g2.setColor(Color.red);}
         	else if(point.infected==2) {g2.setColor(Color.magenta);}
         	else if(point.infected==0&&point.vaccinated==true) {g2.setColor(Color.cyan);}
@@ -50,6 +50,6 @@ public class Plansza extends JPanel {
         }
         g2.setColor(Color.black);
         g.setFont(new Font("default",Font.BOLD,16));
-        g.drawString("Dzieñ: "+Menu.parametry.getDay(), 20, 20);
+        g.drawString("Dzieñ: "+Menu.parametry.getDay(), 20, 20);//licznik dni
     }
 }

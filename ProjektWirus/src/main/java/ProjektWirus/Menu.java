@@ -21,7 +21,7 @@ public class Menu extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public static Parametry parametry;
 	public Menu(){
-		NumberFormat format = NumberFormat.getInstance();
+		NumberFormat format = NumberFormat.getInstance();//prosty numberformat pozwalaj¹cy wpisywaæ tylko liczby w odpowiednie pola tekstowe
 	    NumberFormatter formatter = new NumberFormatter(format);
 	    formatter.setValueClass(Integer.class);
 	    formatter.setMinimum(0);
@@ -29,14 +29,14 @@ public class Menu extends JPanel{
 	    formatter.setAllowsInvalid(false);
 	    formatter.setCommitsOnValidEdit(true);
 		
-	    JPanel panel = new JPanel();
+	    JPanel panel = new JPanel();//g³ówne okno menu
 		JFrame frame = new JFrame("Projekt Wirus");
 		frame.setLocationRelativeTo(null); 
 		frame.setSize(600, 280);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		panel.setLayout(null);
-		
+		//Pola tekstowe oraz odpowiadaj¹ce im opisy do wprowadzania parametrów symulacji
 		JLabel numAgentsLabel = new JLabel("Liczba ludzi");
 		numAgentsLabel.setBounds(10, 20, 80, 25);
 		panel.add(numAgentsLabel);
@@ -120,18 +120,18 @@ public class Menu extends JPanel{
 		procent5.setBounds(370, 200, 100, 25);
 		panel.add(procent5);
 		
-		JButton buttonStart = new JButton("Start");
+		JButton buttonStart = new JButton("Start");//przycisk zaczynaj¹cy symulacje z obecnymi zatwierdzonymi parametrami
 		buttonStart.setBounds(420, 50, 160, 25);
 		buttonStart.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				Plansza plansza = new Plansza();
+				Plansza plansza = new Plansza(); //wywo³ywanie planszy symulacji
 				JDialog dialog = new JDialog(); 
 				dialog.add(plansza);
 		        dialog.setSize(600, 600);
 				dialog.setVisible(true);
-				Timer timer = new Timer(1000, new ActionListener() {
+				Timer timer = new Timer(1000, new ActionListener() { //timer sprawdzaj¹cy warunki koñca symulacji co jeden dzieñ symulacji
 		            public void actionPerformed(ActionEvent e) {
 		            	if(parametry.getDayEnd()==parametry.getDay()) 
 		            	{
@@ -152,7 +152,7 @@ public class Menu extends JPanel{
 		        timer.start();
 			}
 		});
-		JButton buttonParametry = new JButton("ZatwierdŸ parametry");
+		JButton buttonParametry = new JButton("ZatwierdŸ parametry");//Przycisk zatwierdzaj¹cy parametry symulacji tworz¹c nowy obiekt parametry
 		buttonParametry.setBounds(420, 20, 160, 25);
 		buttonParametry.addActionListener(new ActionListener()
 		{
@@ -164,26 +164,25 @@ public class Menu extends JPanel{
 				}
 				else 
 				{
-					int numAgents = (int) numAgentsText.getValue();
+					int numAgents = (int) numAgentsText.getValue();//odczytywanie danych z pól tekstowych
 					int procMoving = (int) procMovingText.getValue();
 					int procSick = (int) procSickText.getValue();
 					int procVacc = (int) procVaccText.getValue();
 					int dayEnd = (int) dayEndText.getValue();	
 					int vaccEff = (int) vaccEffText.getValue();
 					int virusInf = (int) virusInfText.getValue();
-					//System.out.println(numAgents + ", " + procMoving + ", " + procSick + ", " + procVacc + ", " + dayEnd +","+vaccEff+ "," +virusInf);
 					if(numAgents>10000){JOptionPane.showMessageDialog(frame,"Liczba ludzi powinna nie przekraczaæ 10000","",JOptionPane.ERROR_MESSAGE);} 
 					else if(procMoving>100 || procSick>100 || procVacc>100 || vaccEff>100 || virusInf>100){JOptionPane.showMessageDialog(frame,"Wartoœci procentowe powinny byæ z zakresu 0-100","",JOptionPane.ERROR_MESSAGE);} 
 					else 
 					{
 						JOptionPane.showMessageDialog(frame,"Parametry zatwierdzone","",JOptionPane.PLAIN_MESSAGE);
 						Menu.parametry = new Parametry(numAgents,procMoving,procSick,procVacc,dayEnd,vaccEff,virusInf);
-						new Zwrot(numAgents,procMoving,procSick,procVacc,dayEnd);
+						new Zwrot(numAgents,procMoving,procSick,procVacc,dayEnd);//wpisanie parametrów do statycznych pól zwrotu u¿ytych potem do spisania ich do pliku tekstowego
 					}
 				}
 			}
 		});
-		JButton defaultb = new JButton("Parametry domyœlne");
+		JButton defaultb = new JButton("Parametry domyœlne");//Przycisk zaczynaj¹cy symulacje z parametrami domyœlnymi (g³ównie s³u¿y do debugu symulacji)
 		defaultb.setBounds(420, 80, 160, 25);
 		defaultb.addActionListener(new ActionListener()
 		{
@@ -196,7 +195,7 @@ public class Menu extends JPanel{
 				dialog.add(plansza);
 		        dialog.setSize(600, 600);
 				dialog.setVisible(true);
-				Timer timer = new Timer(1000, new ActionListener() {
+				Timer timer = new Timer(1000, new ActionListener() {//timer sprawdzaj¹cy warunki koñca symulacji co jeden dzieñ w symulacji
 		            public void actionPerformed(ActionEvent e) {
 		            	if(parametry.getDayEnd()==parametry.getDay()) 
 		            	{

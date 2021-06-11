@@ -9,25 +9,25 @@ import javax.swing.JOptionPane;
 public class Stoper {
 	public static Random rand= new Random();
 	public static int flaga=100;
-	public static int infected;
-	public static int infectedDay;
+	public static int infected;		//dwa atrybuty potrzebne do wyników zwrotnych symulacji
+	public static int infectedDay;	//
 	public static void routine(ArrayList<Agent> points, ArrayList<AgentPodrozujacy> pointsm,Virus virus,VirusSmiertelny virusDeadly,Szczepionka vaccine) throws IOException
 	{
 		infectedDay=0;
-		if(flaga%100==0) 
+		if(flaga%100==0)//warunek mijania dnia w symulacji
 		{
 			infected=0;
 			Menu.parametry.setDay(Menu.parametry.getDay()+1);
-			for(Agent point: points) 
+			for(Agent point: points) //pêtla rutynowa agentów
 			{
 				switch(point.infected) {
-				  case 1:
+				  case 1://zara¿eni wirusem 1
 					 point.daysinfected++;
 		         	 point.Checkinfection();
 		         	 infectedDay+=Virus.Infection(points,pointsm,vaccine,point,virus.virusInfectionProc);
 		         	 infected++;
 		         	 break;
-				  case 2:
+				  case 2://zara¿eni wirusem œmiertelnym
 					  point.daysinfected++;
 		         	  point.Checkinfection();
 		         	  infectedDay+=VirusSmiertelny.Infection(points,pointsm,vaccine,point,virus.virusInfectionProc);
@@ -39,20 +39,20 @@ public class Stoper {
 					break;  
 				}
 			}
-			for(AgentPodrozujacy point: pointsm) 
+			for(AgentPodrozujacy point: pointsm) //pêtla rutynowa agentów podró¿uj¹cych
 			{
 				switch(point.infected) {
-				  case 1:
+				  case 1://zara¿eni wirusem 1
 					  point.daysinfected++;
 		         	  point.Checkinfection();
 		         	  infectedDay+=Virus.Infection(points,pointsm,vaccine,point,virus.virusInfectionProc);
 				      infected++;
 		         	  break;
-				  case 2:
+				  case 2://zara¿eni wirusem œmiertelnym
 					  point.daysinfected++;
 		         	  point.Checkinfection();
 		         	  infectedDay+=VirusSmiertelny.Infection(points,pointsm,vaccine,point,virus.virusInfectionProc);
-		         	  if(rand.nextInt(101)<=point.daysinfected) 
+		         	  if(rand.nextInt(101)<=point.daysinfected) //szansa œmierci agenta jest funkcj¹ liniow¹ zale¿n¹ od d³ugoœci zara¿enia gdzie jeden dzieñ zara¿enia odpowiada jednemu punktowi procentowemu szansy œmierci na wirusa
 		         	  {
 		         		  VirusSmiertelny.die(point);
 		         	  }
@@ -64,14 +64,14 @@ public class Stoper {
 		flaga++;
 		for(AgentPodrozujacy point:pointsm) 
 		{
-			if(point.infected!=3) 
+			if(point.infected!=3) //gdy nie s¹ martwi
 			{
-				point.Move();
+				point.Move();//ruch wszystkich agentów podró¿uj¹cych (nie martwych)
 			}
 		}
-		if(Zwrot.MostSick<infected) {Zwrot.MostSick=infected;}
+		if(Zwrot.MostSick<infected) {Zwrot.MostSick=infected;}//parametry zwrotne
 		if(Zwrot.mostSickDay<infectedDay) {Zwrot.mostSickDay=infectedDay;}
-		if(infected==0) 
+		if(infected==0) //Jeden z warunków koñca symulacji
 		{
 			Zwrot.dayExit=Menu.parametry.getDay();
 			Zwrot.toFile();

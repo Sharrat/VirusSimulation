@@ -5,18 +5,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Zwrot {
-	public static int MostSick;
-	public static int dayExit;
-	public static int mostSickDay;
-	private static int numAgents;
-	private static int procMoving;
-	private static int procSick;
-	private static int procVacc;
-	private static int dayEnd;
-	private static String whyEnd;
-	public Zwrot(int x,int y, int z,int a, int b) 
+	public static int MostSick;//najwiêcej zara¿onych w jednym momencie
+	public static int dayExit;//dzieñ zakoñczenia symulacji
+	public static int mostSickDay;//najwiêcej zara¿onych w jednym dniu
+	private static int numAgents;// liczba agentów
+	private static int procMoving; // procent poruszaj¹cych siê
+	private static int procSick;// procent zara¿onych
+	private static int procVacc;// procent zaszczepionych
+	private static int dayEnd;// maksymalna d³ugoœæ trwania symulacji
+	private static String whyEnd;//warunek koñca symulacji
+	public Zwrot(int x,int y, int z,int a, int b) //pobranie parametrów symulacji
 	{
-		Zwrot.numAgents=x;
+		Zwrot.numAgents=x; 
 		Zwrot.procMoving=y;
 		Zwrot.procSick=z;
 		Zwrot.procVacc=a;
@@ -26,12 +26,12 @@ public class Zwrot {
 	public static void toFile() 
 			  throws IOException 
 			{
-				if(dayExit==dayEnd) 
+				if(dayExit==dayEnd) //sprawdzenie warunku koñca symulacji
 				{Zwrot.whyEnd="Dojœcie do maksymalnego czasu trwania symulacji";}
 				else
 				{Zwrot.whyEnd="Brak zara¿onych agentów na planszy";}
 			    String str = "Parametry poprzedniej symulacji:\r\nLiczba ludzi:"+Zwrot.numAgents+"\r\nProcent poruszaj¹cych siê:"+Zwrot.procMoving+"\r\nProcent zara¿onych:"+Zwrot.procSick+"\r\nProcent zaszczepionych:"+Zwrot.procVacc+"\r\nMaksymalna liczba dni:"+Zwrot.dayEnd+"\r\nWyniki poprzedniej symulacji:\r\nPowód zakoñczenia symulacji:"+Zwrot.whyEnd+"\r\nNajwiêcej zara¿onych jednego dnia:"+mostSickDay+"\r\nNajwiêcej zara¿onych w jednym momencie:"+MostSick+"\r\nDzieñ zakoñczenia symulacji:"+dayExit;
-			    BufferedWriter writer = new BufferedWriter(new FileWriter("Zwrot.txt"));
+			    BufferedWriter writer = new BufferedWriter(new FileWriter("Zwrot.txt"));//writer tworz¹cy i wpisuj¹cy do pliku zwrot symulacji
 			    writer.write(str);
 			    writer.close();
 			}

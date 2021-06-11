@@ -20,7 +20,7 @@ public class Parametry
 		this.numAgents=a;
 		this.procMoving=b;
 		this.procSick=c;
-		Stoper.infected=a*c/100;
+		Stoper.infected=a*c/100;//wpisanie pierwotnej liczby zara¿onych w symulacji do stopera aby poprawnie sprawdzaæ warunki koñca symulacji (czy przypadkiem na pocz¹tku ju¿ nie ma ich 0)
 		this.procVacc=d;
 		this.dayEnd=e;
 		this.vaccine = new Szczepionka(f);
@@ -29,14 +29,10 @@ public class Parametry
 		points = new ArrayList<Agent>();
         pointsMoving = new ArrayList<AgentPodrozujacy>();
         double moving=Math.floor(numAgents*procMoving/100);
-        System.out.println(moving);
         double stationary=numAgents-moving;
-        System.out.println(stationary);
         double movingSick=Math.floor(moving*procSick/100);
-        System.out.println(movingSick);
         double stationarySick=Math.floor(stationary*procSick/100);
-        System.out.println(stationarySick);
-        for(int i=0;i<Math.ceil(stationarySick/2);i++){
+        for(int i=0;i<Math.ceil(stationarySick/2);i++){ //Pêtle wype³niaj¹ce ArrayListy agentami oraz agentami podró¿uj¹cymi z losowym rozmieszczeniem oraz d³ugoœci¹ zara¿enia wed³ug parametrów symulacji
         	points.add(new Agent(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),1,Stoper.rand.nextInt(27)+3,false));}
         for(int i=0;i<Math.floor(stationarySick/2);i++){
         	points.add(new Agent(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),2,Stoper.rand.nextInt(27)+3,false));}
@@ -52,7 +48,6 @@ public class Parametry
         	pointsMoving.add(new AgentPodrozujacy(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),0,Stoper.rand.nextInt(27)+3,true));}
         for(int i=0;i<Math.floor((moving-movingSick)-((moving-movingSick)*procVacc/100));i++) {
         	pointsMoving.add(new AgentPodrozujacy(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),0,Stoper.rand.nextInt(27)+3,false));}
-        //System.out.println((moving-movingSick)-((moving-movingSick)*procVacc/100));
 	}
 	public int getDay() 
 	{
