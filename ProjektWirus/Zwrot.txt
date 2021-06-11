@@ -1,4 +1,11 @@
+Parametry poprzedniej symulacji:
+Liczba ludzi:5
+Procent poruszaj¹cych siê:0
+Procent zara¿onych:0
+Procent zaszczepionych:0
+Maksymalna liczba dni:50
 Wyniki poprzedniej symulacji:
-Najwiêcej zara¿onych jednego dnia:135
-Najwiêcej zara¿onych w jednym momencie:1107
-Dzieñ zakoñczenia symulacji:5
+Powód zakoñczenia symulacji:Brak zara¿onych agentów na planszy
+Najwiêcej zara¿onych jednego dnia:1
+Najwiêcej zara¿onych w jednym momencie:4
+Dzieñ zakoñczenia symulacji:1

@@ -20,6 +20,7 @@ public class Parametry
 		this.numAgents=a;
 		this.procMoving=b;
 		this.procSick=c;
+		Stoper.infected=a*c/100;
 		this.procVacc=d;
 		this.dayEnd=e;
 		this.vaccine = new Szczepionka(f);
@@ -27,25 +28,29 @@ public class Parametry
 		this.virusDeadly = new VirusSmiertelny(g);
 		points = new ArrayList<Agent>();
         pointsMoving = new ArrayList<AgentPodrozujacy>();
-        float moving=numAgents*procMoving/100;
-        float stationary=numAgents-moving;
-        float movingSick=moving*procSick/100;
-        float stationarySick=stationary*procSick/100;
-        for(int i=0;i<(stationarySick/2);i++){ 
+        double moving=Math.floor(numAgents*procMoving/100);
+        System.out.println(moving);
+        double stationary=numAgents-moving;
+        System.out.println(stationary);
+        double movingSick=Math.floor(moving*procSick/100);
+        System.out.println(movingSick);
+        double stationarySick=Math.floor(stationary*procSick/100);
+        System.out.println(stationarySick);
+        for(int i=0;i<Math.ceil(stationarySick/2);i++){
         	points.add(new Agent(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),1,Stoper.rand.nextInt(27)+3,false));}
-        for(int i=0;i<(stationarySick/2);i++){
+        for(int i=0;i<Math.floor(stationarySick/2);i++){
         	points.add(new Agent(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),2,Stoper.rand.nextInt(27)+3,false));}
-        for(int i=0;i<(stationary-stationarySick)*procVacc/100;i++) {
+        for(int i=0;i<Math.floor((stationary-stationarySick)*procVacc/100);i++) {
         	points.add(new Agent(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),0,Stoper.rand.nextInt(27)+3,true));}
-        for(int i=0;i<(stationary-stationarySick)-((stationary-stationarySick)*procVacc/100);i++) {
+        for(int i=0;i<Math.ceil((stationary-stationarySick)-((stationary-stationarySick)*procVacc/100));i++) {
         	points.add(new Agent(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),0,Stoper.rand.nextInt(27)+3,false));}
-        for(int i=0;i<(movingSick/2);i++){
+        for(int i=0;i<Math.ceil(movingSick/2);i++){
         	pointsMoving.add(new AgentPodrozujacy(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),1,Stoper.rand.nextInt(27)+3,false));}
-        for(int i=0;i<(movingSick/2);i++){
+        for(int i=0;i<Math.floor(movingSick/2);i++){
         	pointsMoving.add(new AgentPodrozujacy(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),2,Stoper.rand.nextInt(27)+3,false));}
-        for(int i=0;i<(moving-movingSick)*procVacc/100;i++) {
+        for(int i=0;i<Math.ceil((moving-movingSick)*procVacc/100);i++) {
         	pointsMoving.add(new AgentPodrozujacy(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),0,Stoper.rand.nextInt(27)+3,true));}
-        for(int i=0;i<(moving-movingSick)-((moving-movingSick)*procVacc/100);i++) {
+        for(int i=0;i<Math.floor((moving-movingSick)-((moving-movingSick)*procVacc/100));i++) {
         	pointsMoving.add(new AgentPodrozujacy(Stoper.rand.nextInt(600),Stoper.rand.nextInt(600),0,Stoper.rand.nextInt(27)+3,false));}
         //System.out.println((moving-movingSick)-((moving-movingSick)*procVacc/100));
 	}

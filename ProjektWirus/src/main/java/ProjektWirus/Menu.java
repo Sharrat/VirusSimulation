@@ -178,6 +178,7 @@ public class Menu extends JPanel{
 					{
 						JOptionPane.showMessageDialog(frame,"Parametry zatwierdzone","",JOptionPane.PLAIN_MESSAGE);
 						Menu.parametry = new Parametry(numAgents,procMoving,procSick,procVacc,dayEnd,vaccEff,virusInf);
+						new Zwrot(numAgents,procMoving,procSick,procVacc,dayEnd);
 					}
 				}
 			}
@@ -190,6 +191,7 @@ public class Menu extends JPanel{
 			{
 				Plansza plansza = new Plansza();
 				Menu.parametry = new Parametry(2000,50,40,30,5,85,60);
+				new Zwrot(2000,50,40,30,5);
 				JDialog dialog = new JDialog(); 
 				dialog.add(plansza);
 		        dialog.setSize(600, 600);

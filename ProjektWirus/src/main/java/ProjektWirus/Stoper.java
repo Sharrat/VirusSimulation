@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class Stoper {
 	public static Random rand= new Random();
 	public static int flaga=100;
@@ -11,10 +13,10 @@ public class Stoper {
 	public static int infectedDay;
 	public static void routine(ArrayList<Agent> points, ArrayList<AgentPodrozujacy> pointsm,Virus virus,VirusSmiertelny virusDeadly,Szczepionka vaccine) throws IOException
 	{
-		infected=0;
 		infectedDay=0;
 		if(flaga%100==0) 
 		{
+			infected=0;
 			Menu.parametry.setDay(Menu.parametry.getDay()+1);
 			for(Agent point: points) 
 			{
@@ -69,10 +71,12 @@ public class Stoper {
 		}
 		if(Zwrot.MostSick<infected) {Zwrot.MostSick=infected;}
 		if(Zwrot.mostSickDay<infectedDay) {Zwrot.mostSickDay=infectedDay;}
-		if(Menu.parametry.getDay()==Menu.parametry.getDayEnd()||infected==0) 
+		if(infected==0) 
 		{
 			Zwrot.dayExit=Menu.parametry.getDay();
 			Zwrot.toFile();
+			JOptionPane.showMessageDialog(null,"Symulacja zakoñczona.\r\nWyniki poprzedniej symulacji:\r\nNajwiêcej zara¿onych jednego dnia:"+Zwrot.mostSickDay+"\r\nNajwiêcej zara¿onych w jednym momencie:"+Zwrot.MostSick+"\r\nDzieñ zakoñczenia symulacji:"+Zwrot.dayExit,"",JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);
 		}
 	}
 }
