@@ -19,7 +19,7 @@ import javax.swing.text.NumberFormatter;
 public class Menu extends JPanel{	
 
 	private static final long serialVersionUID = 1L;
-	public static Parametry parametry;
+	public static Parametry parametry = new Parametry(2000,50,40,30,5,85,60);
 	public Menu(){
 		NumberFormat format = NumberFormat.getInstance();//prosty numberformat pozwalaj¹cy wpisywaæ tylko liczby w odpowiednie pola tekstowe
 	    NumberFormatter formatter = new NumberFormatter(format);
