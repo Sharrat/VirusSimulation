@@ -138,6 +138,7 @@ public class Menu extends JPanel{
 		            		 dialog.setVisible(false);
 				             dialog.dispose();
 				             plansza.timer.stop();
+				             Zwrot.dayExit=Menu.parametry.getDay();
 				             try {
 								Zwrot.toFile();
 							 } catch (IOException e1) {}
@@ -190,7 +191,7 @@ public class Menu extends JPanel{
 			{
 				Plansza plansza = new Plansza();
 				Menu.parametry = new Parametry(2000,50,40,30,100,85,60);
-				new Zwrot(2000,50,40,30,5);
+				new Zwrot(2000,50,40,30,100);
 				JDialog dialog = new JDialog(); 
 				dialog.add(plansza);
 		        dialog.setSize(600, 600);
@@ -202,6 +203,7 @@ public class Menu extends JPanel{
 		            		 dialog.setVisible(false);
 				             dialog.dispose();
 				             plansza.timer.stop();
+				             Zwrot.dayExit=Menu.parametry.getDay();
 				             try {
 								Zwrot.toFile();
 							 } catch (IOException e1) {}
